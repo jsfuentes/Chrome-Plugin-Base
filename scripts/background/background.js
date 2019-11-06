@@ -22,12 +22,13 @@ import "../shared/dev_debug.js";
 
 browser.webNavigation.onHistoryStateUpdated.addListener(urlChanged);
 
+debug("Hello background");
 async function urlChanged() {
   const tabs = await browser.tabs.query({
     active: true,
     currentWindow: true
   });
-  debug("Changed url", tabs);
+  debug("Changed url", tabs[0].url);
   // var activeTab = tabs[0];
   // chrome.tabs.sendMessage(activeTab.id, { message: "urlChanged" });
 }

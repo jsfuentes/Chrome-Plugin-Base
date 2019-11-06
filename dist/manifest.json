@@ -6,23 +6,17 @@
   "options_page": "options.html",
 
   "permissions": [
+    "<all_urls>",
     "tabs",
     "storage",
     "webNavigation",
-    "declarativeContent",
     "identity",
     "identity.email"
   ],
 
   "content_scripts": [
     {
-      "matches": [
-        "*://*.twitter.com/*",
-        "*://*.facebook.com/*",
-        "*://*.linkedin.com/*",
-        "*://*.youtube.com/*",
-        "*://*.reddit.com/*"
-      ],
+      "matches": ["<all_urls>"],
       "run_at": "document_idle",
       "js": ["build/content.js"],
       "css": ["style.css"]
