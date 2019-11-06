@@ -1,0 +1,44 @@
+{
+  "name": "Chrome Plugin Base",
+  "version": "0.0.2",
+  "description": "Test base",
+  "manifest_version": 2,
+  "options_page": "options.html",
+
+  "permissions": [
+    "tabs",
+    "storage",
+    "webNavigation",
+    "declarativeContent",
+    "identity",
+    "identity.email"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.twitter.com/*",
+        "*://*.facebook.com/*",
+        "*://*.linkedin.com/*",
+        "*://*.youtube.com/*",
+        "*://*.reddit.com/*"
+      ],
+      "run_at": "document_idle",
+      "js": ["build/content.js"],
+      "css": ["style.css"]
+    }
+  ],
+
+  "background": {
+    "scripts": ["build/background.js"]
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icon.png",
+    "24": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
