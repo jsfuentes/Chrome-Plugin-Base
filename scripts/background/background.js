@@ -1,8 +1,8 @@
 import browser from "webextension-polyfill";
-import debugMaker from 'debug';
-const debug = debugMaker('app:background');
+import debugMaker from "debug";
+const debug = debugMaker("app:background");
 
-import '../shared/dev_debug.js';
+import "../shared/dev_debug.js";
 
 //TODO: Conditional import??
 // import devConfig from '../config/development.json';
@@ -23,8 +23,11 @@ import '../shared/dev_debug.js';
 browser.webNavigation.onHistoryStateUpdated.addListener(urlChanged);
 
 async function urlChanged() {
-  const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+  const tabs = await browser.tabs.query({
+    active: true,
+    currentWindow: true
+  });
   debug("Changed url", tabs);
-  var activeTab = tabs[0];
+  // var activeTab = tabs[0];
   // chrome.tabs.sendMessage(activeTab.id, { message: "urlChanged" });
 }
