@@ -32,3 +32,6 @@ async function urlChanged() {
   // var activeTab = tabs[0];
   // chrome.tabs.sendMessage(activeTab.id, { message: "urlChanged" });
 }
+
+getExtendedConfig().then(r => debug(r));
+getAxios().then(a => debug(a));
