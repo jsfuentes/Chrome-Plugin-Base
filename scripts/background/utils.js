@@ -1,4 +1,3 @@
-/* eslint-disable require-atomic-updates */
 import { default as axiosBase } from "axios";
 import browser from "webextension-polyfill";
 import debugMaker from "debug";
@@ -47,7 +46,7 @@ export async function getAxios() {
     } else {
       debug("Using axios prod");
       axios = axiosBase.create({
-        baseURL: "https://api.modulo.blog"
+        baseURL: eConfig.server_url
         // withCredentials: true
         /* other custom settings */
       });

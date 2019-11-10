@@ -1,4 +1,5 @@
 import browser from "webextension-polyfill";
+//only use debug in background script
 import debugMaker from "debug";
 const debug = debugMaker("app:dev_debug");
 
@@ -13,7 +14,7 @@ if (browser.management) {
 }
 
 //Debug local storage changes
-chrome.storage.onChanged.addListener(function(changes, namespace) {
+browser.storage.onChanged.addListener((changes, namespace) => {
   for (let key in changes) {
     let storageChange = changes[key];
     //not all in `` b/c it abbreivates objs there
@@ -27,6 +28,6 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
 //Debug messages
-chrome.runtime.onMessage.addListener((msg, sender) => {
-  console.log("Message recieved", msg);
+browser.runtime.onMessage.addListener(msg => {
+  console.log("Msg recieved", msg);
 });

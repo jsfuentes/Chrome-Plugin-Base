@@ -2,7 +2,7 @@
   "name": "chrome-base",
   "version": "0.1.0",
   "description": "Make web social again",
-  "main": "scripts/scripts/js/main.js",
+  "main": "dist/build/background.js",
   "scripts": {
     "build:content": "parcel build scripts/content/content.js -d dist/build/ -o content.js",
     "watch:content": "parcel watch --no-hmr scripts/content/content.js -d dist/build/ -o content.js",
@@ -15,8 +15,8 @@
   "author": "Jorge Fuentes",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
+    "axios": "^0.19.0",
     "debug": "^4.1.1",
-    "parcel-bundler": "^1.12.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
@@ -31,6 +31,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.2.0",
+    "parcel-bundler": "^1.12.4",
     "prettier": "^1.18.2",
     "webextension-polyfill": "^0.5.0"
   }

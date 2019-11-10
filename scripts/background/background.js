@@ -3,26 +3,11 @@ import debugMaker from "debug";
 const debug = debugMaker("app:background");
 
 import "../shared/dev_debug.js";
-
-//TODO: Conditional import??
-// import devConfig from '../config/development.json';
-// import prodConfig from '../config/production.json';
-
-// async function getConfig() {
-//   const pluginInfo = await browser.management.getSelf();
-//   if(pluginInfo.installType === "development") {
-//     localStorage.debug = "app:*";
-//     debug(`In development mode`);
-//     return devConfig;
-//   } else {
-//     console.log(`In production mode`);
-//     return prodConfig;
-//   }
-// }
+import { getExtendedConfig, getAxios } from "./utils.js";
 
 browser.webNavigation.onHistoryStateUpdated.addListener(urlChanged);
 
-debug("Hello background");
+debug("Hello from background");
 async function urlChanged() {
   const tabs = await browser.tabs.query({
     active: true,
@@ -33,5 +18,5 @@ async function urlChanged() {
   // chrome.tabs.sendMessage(activeTab.id, { message: "urlChanged" });
 }
 
-getExtendedConfig().then(r => debug(r));
-getAxios().then(a => debug(a));
+getExtendedConfig().then(config => debug("Config:", config));
+getAxios().then(axios => debug("Axios:", axios));
