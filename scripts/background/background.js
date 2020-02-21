@@ -1,13 +1,12 @@
 import browser from "webextension-polyfill";
-import debugMaker from "debug";
-const debug = debugMaker("app:background");
+const debug = require("debug")("app:background");
 
 import "../shared/dev_debug.js";
-import { getExtendedConfig, getAxios } from "./utils.js";
+import { getExtendedConfig, getAxios } from "../shared/utils.js";
 
 browser.webNavigation.onHistoryStateUpdated.addListener(urlChanged);
 
-debug("Hello from background");
+debug("Hello from backgrounds");
 async function urlChanged() {
   const tabs = await browser.tabs.query({
     active: true,

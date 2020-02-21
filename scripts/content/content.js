@@ -1,8 +1,9 @@
 import browser from "webextension-polyfill";
+const debug = require("debug")("app:content");
 
 import "../shared/dev_debug.js";
 
-console.log("Sample content script runs");
+debug("Sample content script runs");
 
 browser.storage.sync.get(["test"]).then(async storage => {
   const newVal = storage.test !== undefined ? storage.test + 1 : 0;

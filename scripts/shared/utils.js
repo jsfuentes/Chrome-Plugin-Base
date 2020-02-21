@@ -1,8 +1,6 @@
 import { default as axiosBase } from "axios";
 import browser from "webextension-polyfill";
-import debugMaker from "debug";
-// eslint-disable-next-line no-unused-vars
-const debug = debugMaker("app:utils");
+const debug = require("debug")("app:shared:utils");
 
 function promiseIdentity() {
   return new Promise((resolve, reject) => {
