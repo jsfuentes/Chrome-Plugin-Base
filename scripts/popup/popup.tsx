@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 const debug = require("debug")("app:popup");
 
 import "../shared/dev_debug";
-import { getAxios } from "../shared/utils";
+import { getAxios } from "../shared/background";
 
-debug("Running popup");
 function Popup() {
   useEffect(() => {
     getAxios().then(axios => debug("Axios:", axios));
@@ -14,4 +13,9 @@ function Popup() {
   return <button>Activate Superpowers</button>;
 }
 
-ReactDOM.render(<Popup />, document.getElementById("root"));
+// Clear the existing HTML content
+document.body.innerHTML = '<div id="app"></div>';
+
+// Render your React component instead
+const root = createRoot(document.getElementById("app") as HTMLElement);
+root.render(<Popup />);

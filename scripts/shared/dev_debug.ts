@@ -1,60 +1,22 @@
-//include this in both content and background script plz
+//include this in both content, service_worker, and popup script for debug messages
 import debugMaker from "debug";
+
+import { isDevMode } from "./utils";
 const debug = debugMaker("app:scripts:dev_debug");
 
-function isDevMode() {
-  if (typeof chrome.runtime.getManifest) {
-    console.log("chrome.runtime.getManifest found");
-    return !("update_url" in chrome.runtime.getManifest());
-  } else {
-    console.log("chrome.runtime.getManifest not found");
-    return false;
-  }
+if (isDevMode()) {
+  console.log(
+    "Starting console debug mode (turn on verbose in console to see debug messages)"
+  );
+  debugMaker.enable("app:*");
+  debug("Welcome to console debug mode");
 }
 
-isDevMode();
-
-//Need to turn on debug mode for development
-
-// if in background script
-// if (chrome.management) {
-//   chrome.management
-//     .getSelf()
-//     .then(pluginInfo => {
-//       console.log("Plugin info: ", pluginInfo);
-//       if (pluginInfo.installType === "development") {
-//         debugMaker.enable("app:*");
-//         debug("Starting debug mode");
-//       }
-
-//       chrome.runtime.onMessage.addListener(request => {
-//         if (request.type === C.is_development) {
-//           return new Promise(resolve =>
-//             resolve({ env: pluginInfo.installType })
-//           );
-//         }
-//         return false;
-//       });
-//     })
-//     .catch(err => {
-//       console.error("Debugging error: ", err);
-//     });
-// } else {
-//   //hit the listener defined above to learn if in development
-//   chrome.runtime
-//     .sendMessage({ type: C.is_development })
-//     .then(resp => {
-//       if (resp.env === "development") {
-//         debugMaker.enable("app:*");
-//         debug("Starting debug mode");
-//       } else {
-//         // console.log("In production");
-//       }
-//     })
-//     .catch(err => {
-//       console.error("Debugging error: ", err);
-//     });
-// }
+if (chrome.management) {
+  //Do stuff in popup and service worker
+} else {
+  //Do stuff in content script
+}
 
 //Debug local storage changes
 chrome.storage.onChanged.addListener((changes, namespace) => {

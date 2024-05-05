@@ -1,7 +1,7 @@
 const debug = require("debug")("app:background");
 
+import { getAxios, getExtendedConfig } from "../shared/background";
 import "../shared/dev_debug";
-import { getAxios, getExtendedConfig } from "../shared/utils";
 
 chrome.webNavigation.onHistoryStateUpdated.addListener(urlChanged);
 
@@ -11,7 +11,7 @@ async function urlChanged() {
     active: true,
     currentWindow: true
   });
-  debug("Changed url", tabs[0].url);
+  debug("Changed url", tabs[0]?.url);
   // var activeTab = tabs[0];
   // chrome.tabs.sendMessage(activeTab.id, { message: "urlChanged" });
 }

@@ -1,13 +1,17 @@
 # Chrome Plugin Base
 
-Chrome Plugin with babel and great development tooling:
+Chrome Plugin boilerplate with great development tooling:
 
-- `.babelrc` and parcel adds support for the async/await, react, and targets the last 4 major Chrome versions
-- Instead using callback plugin functions, use `webextension-polyfill` which is cross-browser and promise based
-- debug library set to only print in development
-- printing of messages and local storage changes
-- functions to get development axios and debugging
-- popup with React and empty options page
+- Basic service_worker
+- Basic content script injected into every page
+- Basic popup with React
+- `.babelrc` and parcel building adds support for Typescript v5 and React v18
+- Config setup offering user info, isDev, and custom config json importing based on packed or unpacked plugin
+- Debugging Code
+    - `debug` package setup to only print in development when you turn on verbose console logging
+        - prints all messages and local storage changes
+    - Sourcemaps setup for debugging original code
+- Prettier and Eslint setup
 
 ## Setup
 
