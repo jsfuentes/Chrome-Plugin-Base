@@ -11,18 +11,16 @@ Chrome Plugin with babel and great development tooling:
 
 ## Setup
 
-- `yarn`
-- `yarn watch` for the first time files
+- `npm`
+- `npm run watch` for the first time files
 - On chrome://extensions, load unpacked dist folder
-
 
 ### Dev
 
-- `yarn watch`
+- `npm run watch`
 - Make sure to refresh chrome plugin
 - Win big
-  The
 
 ### Prod
 
-- `yarn build` then package for dist mode
+- `npm run build` then package for dist mode

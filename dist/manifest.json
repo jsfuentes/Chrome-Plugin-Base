@@ -1,18 +1,20 @@
 {
   "name": "Chrome Plugin Base",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Test base",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "options_page": "options.html",
 
   "permissions": [
-    "<all_urls>",
     "tabs",
     "storage",
     "webNavigation",
     "identity",
-    "identity.email"
+    "identity.email",
+    "management"
   ],
+
+  "host_permissions": ["*://*/*"],
 
   "content_scripts": [
     {
@@ -24,11 +26,13 @@
   ],
 
   "background": {
-    "scripts": ["build/background.js"]
+    "service_worker": "build/service_worker.js"
   },
-  "browser_action": {
+
+  "action": {
     "default_popup": "popup.html"
   },
+
   "icons": {
     "16": "icon.png",
     "24": "icon.png",

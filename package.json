@@ -2,17 +2,17 @@
   "name": "chrome-base",
   "version": "0.1.0",
   "description": "Make web fun again",
-  "main": "dist/build/background.js",
+  "main": "dist/build/service_worker.js",
   "scripts": {
-    "build:content": "parcel build scripts/content/content.js -d dist/build/ -o content.js",
-    "watch:content": "parcel watch --no-hmr scripts/content/content.js -d dist/build/ -o content.js",
-    "build:background": "parcel build scripts/background/background.js -d dist/build/ -o background.js",
-    "watch:background": "parcel watch --no-hmr scripts/background/background.js -d dist/build/ -o background.js",
-    "build:popup": "parcel build --no-hmr scripts/popup/popup.js -d dist/build/ -o popup.js",
-    "watch:popup": "parcel watch --no-hmr scripts/popup/popup.js -d dist/build/ -o popup.js",
-    "build": "concurrently \"yarn build:content\" \"yarn build:background\" \"yarn build:popup\"",
-    "watch": "concurrently \"yarn watch:content\" \"yarn watch:background\" \"yarn watch:popup\"",
-    "clean": "rm -rf node_modules && rm yarn.lock"
+    "build:content": "parcel build scripts/content/content.ts -d dist/build/ -o content.js",
+    "watch:content": "parcel watch --no-hmr scripts/content/content.ts -d dist/build/ -o content.js",
+    "build:service_worker": "parcel build scripts/service_worker/service_worker.ts -d dist/build/ -o service_worker.js",
+    "watch:service_worker": "parcel watch --no-hmr scripts/service_worker/service_worker.ts -d dist/build/ -o service_worker.js",
+    "build:popup": "parcel build --no-hmr scripts/popup/popup.tsx -d dist/build/ -o popup.js",
+    "watch:popup": "parcel watch --no-hmr scripts/popup/popup.tsx -d dist/build/ -o popup.js",
+    "build": "concurrently \"npm run build:content\" \"npm run build:service_worker\" \"npm run build:popup\"",
+    "watch": "concurrently \"npm run watch:content\" \"npm run watch:service_worker\" \"npm run watch:popup\"",
+    "clean": "rm -rf node_modules && rm package-lock.json"
   },
   "author": "Jorge Fuentes",
   "dependencies": {
@@ -27,6 +27,9 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "chrome-types": "^0.1.282",
     "concurrently": "^4.1.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
@@ -35,6 +38,6 @@
     "eslint-plugin-react-hooks": "^2.2.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "^1.18.2",
-    "webextension-polyfill": "^0.5.0"
+    "typescript": "^5.4.5"
   }
 }
