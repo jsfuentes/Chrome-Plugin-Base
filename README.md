@@ -5,7 +5,8 @@ Chrome Plugin boilerplate with great development tooling:
 - Basic service_worker
 - Basic content script injected into every page
 - Basic popup with React
-- `.babelrc` and parcel building adds support for Typescript v5 and React v18
+- Basic options page
+- `.babelrc` and parcel building adds support for Typescript v5, React v18, and Tailwind CSS v3
 - Config setup offering user info, isDev, and custom config json importing based on packed or unpacked plugin
 - Debugging Code
     - `debug` package setup to only print in development when you turn on verbose console logging

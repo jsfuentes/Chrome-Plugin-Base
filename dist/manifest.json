@@ -18,7 +18,11 @@
 
   "web_accessible_resources": [
     {
-      "resources": ["build/*.map"],
+      "resources": ["*/*.map"],
+      "matches": ["<all_urls>"]
+    },
+    {
+      "resources": ["popup/*.css", "popup/*.js"],
       "matches": ["<all_urls>"]
     }
   ],
@@ -27,17 +31,16 @@
     {
       "matches": ["<all_urls>"],
       "run_at": "document_idle",
-      "js": ["build/content.js"],
-      "css": ["style.css"]
+      "js": ["content/content.js"]
     }
   ],
 
   "background": {
-    "service_worker": "build/service_worker.js"
+    "service_worker": "service_worker/service_worker.js"
   },
 
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup/popup.html"
   },
 
   "icons": {

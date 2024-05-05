@@ -10,7 +10,7 @@ function Popup() {
     getAxios().then(axios => debug("Axios:", axios));
   }, []);
 
-  return <button>Activate Superpowers</button>;
+  return <button className="bg-red-500 p-2">Activate Superpowers</button>;
 }
 
 // Clear the existing HTML content

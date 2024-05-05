@@ -2,25 +2,23 @@
   "name": "chrome-plugin-base",
   "version": "0.0.3",
   "description": "Make web fun again",
-  "main": "dist/build/service_worker.js",
   "scripts": {
-    "build:content": "parcel build scripts/content/content.ts -d dist/build/ -o content.js --public-url ./",
-    "watch:content": "parcel watch --no-hmr scripts/content/content.ts -d dist/build/ -o content.js --public-url ./",
-    "build:service_worker": "parcel build scripts/service_worker/service_worker.ts -d dist/build/ -o service_worker.js --public-url ./",
-    "watch:service_worker": "parcel watch --no-hmr scripts/service_worker/service_worker.ts -d dist/build/ -o service_worker.js --public-url ./",
-    "build:popup": "parcel build --no-hmr scripts/popup/popup.tsx -d dist/build/ -o popup.js --public-url ./",
-    "watch:popup": "parcel watch --no-hmr scripts/popup/popup.tsx -d dist/build/ -o popup.js --public-url ./",
-    "build": "concurrently \"npm run build:content\" \"npm run build:service_worker\" \"npm run build:popup\"",
-    "watch": "concurrently \"npm run watch:content\" \"npm run watch:service_worker\" \"npm run watch:popup\"",
-    "clean": "rm -rf node_modules && rm package-lock.json"
+    "build": "rm -rf dist/popup && parcel build --public-url ./",
+    "watch": "rm -rf dist/popup && parcel watch --public-url ./ --no-hmr",
+    "clean": "rm -rf node_modules && rm package-lock.json && rm -rf .parcel-cache"
   },
   "targets": {
-    "default": {
-      "sourceMap": {
-        "inline": true
-      }
+    "content": {
+      "source": "src/content/content.ts"
+    },
+    "service_worker": {
+      "source": "src/service_worker/service_worker.ts"
+    },
+    "popup": {
+      "source": "src/popup/popup.html"
     }
   },
+  "browserslist": "last 4 Chrome major versions",
   "author": "Jorge Fuentes",
   "dependencies": {
     "axios": "^1.6.8",
@@ -30,12 +28,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
-    "@babel/plugin-transform-runtime": "^7.24.3",
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.24.1",
     "@babel/runtime": "^7.24.5",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
+    "buffer": "^6.0.3",
     "chrome-types": "^0.1.282",
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
@@ -43,8 +41,11 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "parcel": "^2.12.0",
     "parcel-bundler": "^1.12.5",
+    "postcss": "^8.4.38",
     "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
   }
 }
