@@ -1,4 +1,5 @@
 import { AxiosInstance, AxiosStatic, default as axiosBase } from "axios";
+
 import { isDevMode } from "./utils";
 const debug = require("debug")("app:shared:background");
 
@@ -6,7 +7,10 @@ const debug = require("debug")("app:shared:background");
 let eConfig: JSON; //singleton
 export async function getExtendedConfig() {
   if (eConfig === undefined) {
-    const userInfo = await chrome.identity.getProfileUserInfo();
+    const userInfo =
+      typeof chrome !== "undefined"
+        ? await chrome.identity.getProfileUserInfo()
+        : {};
 
     let config: JSON;
     if (isDevMode()) {
@@ -32,7 +36,7 @@ export async function getAxios() {
     } else {
       debug("Using axios prod");
       axios = axiosBase.create({
-        baseURL: eConfig["server_url"]
+        baseURL: eConfig["server_url"],
         // withCredentials: true
         /* other custom settings */
       });
